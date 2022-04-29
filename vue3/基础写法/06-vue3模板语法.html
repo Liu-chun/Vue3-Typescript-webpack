@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        
+        <h2>my-app</h2>
+        <!-- 1. mustache插值语法基本使用 -->
+        <p>{{ message }}</p>
+        <!-- 2. 可以是一个表达式 -->
+        <p>{{ count * 10 }}</p>
+        <p>{{ message.split("").reverse().join(" ") }}</p>
+        <!-- 3. 可以是一个函数 -->
+        <p>{{ formart() }}</p>
+        <!-- 4. 三元运算符 -->
+        <p>{{ count > 10 ? 100 : 200 }}</p>
+        
+
+        <!-- 错误用法 -->
+        <!-- 不可以是一条语句，判断，循环等等 -->
+        <!-- <p>{{ var a = "哈哈" }}</p> -->
+    </template>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    message: "hellow",
+                    count: 100,
+                }
+            },
+            methods: {
+                formart() {
+                    return this.message.split("").reverse().join(" ")
+                },
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>

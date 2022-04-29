@@ -1,0 +1,1 @@
+(()=>{var e={582:e=>{e.exports={decrease:function(e,r){return e-r},age:18}}},r={};function o(t){var s=r[t];if(void 0!==s)return s.exports;var n=r[t]={exports:{}};return e[t](n,n.exports,o),n.exports}(()=>{"use strict";const e=o(582);console.log(30),console.log(e.decrease(10,20))})()})();

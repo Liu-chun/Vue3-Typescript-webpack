@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        [cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <h2>{{ count }}</h2>
+        <!-- 不改变所有子组件（子元素）的值 -->
+        <h2 v-once>{{ count }}</h2>
+        <!-- v-pre不解析{{}} -->
+        <h2 v-pre>{{ count }}</h2>
+        <h2 v-text="message"></h2>
+        <h2 v-html="msg"></h2>
+        <h2 v-cloak>{{ message }}</h2>
+        <button @click="add">+</button>
+    </template>
+    <script>
+        // options Api 写法----vue2写法
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+                    count: 100,
+                    message: "hellow",
+                    msg: "<span>你好</span>",
+                }
+            },
+            methods: {
+                add() {
+                    this.count++
+                }
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>

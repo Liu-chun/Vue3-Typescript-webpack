@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <!-- v-if -->
+        <p v-if="show">{{ mes }}</p>
+        <button @click="handleTarggleClick">切换</button>
+        <!-- v-else-if v-else-->
+        <div class="score">
+            <input type="text" v-model="score">
+            <p v-if="score >= 90">A</p>
+            <p v-else-if="score >= 60 && score < 90">B</p>
+            <p v-else>C</p>
+        </div>
+        <!-- v-if结合template一起使用 -->
+        <template v-if="show">
+            <p>你好</p>
+            <p>你好</p>
+            <p>你好</p>
+        </template>
+        <template v-else>
+            <p>hellow world</p>
+            <p>hellow world</p>
+            <p>hellow world</p>
+
+
+        </template>
+    </template>
+    <script>
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+                    mes: "hellow world",
+                    show: false,
+                    score: 90,
+                }
+            },
+            methods: {
+                handleTarggleClick() {
+                    this.show = !this.show
+                }
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>

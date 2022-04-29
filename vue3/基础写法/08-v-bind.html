@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active{
+            color: rgb(163, 72, 72);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- vue2 template模板中只能有一个根元素 -->
+    <!-- vue3 tempalte模板中可以有多个根元素 -->
+    <template id="my-app">
+        <!-- v-bind基本使用 缩写 为: -->
+        <div class="bind">
+            <img :src="imgUrl" alt="" />
+            <a :href="link">食品工业互联网</a></a>
+            <!-- 以对象的形式动态绑定class -->
+            <h2 :class="{ 'active': show, 'title': !show }">你好啊</h2>
+            <h2 class="abc bcd" :class="{ active: show, title: show }">你好啊</h2>
+            <!-- 可以是一个属性 -->
+            <h2 :class="classObj">你好啊</h2>
+            <!-- 可以是一个方法 -->
+            <h2 :class="getClass()">你好啊</h2>
+    
+            <!-- 以数组的形式动态绑定 class -->
+            <h2 :class="['abc', title,  { actives: show }, show ? 'active' : '' ]">你好啊</h2>
+        </div>
+        <!-- 以对象的形式动态绑定 style -->
+        <div class="bind">
+            <h2 :style="{ color: 'blue', fontSize: '28px', 'font-weight': 400 }">你好啊</h2>
+            <h2 :style="{ color: color }">你好啊</h2>
+            <!-- 可以是一个属性 -->
+    
+            <!-- 可以是一个函数 -->
+    
+            <!-- 以数组的形式动态绑定 style -->
+            <h2 :style="[style1Obj, style2Obj]">你好啊</h2>
+        </div>
+        <!-- *动态绑定属性 -->
+        <div class="bind">
+            <div :[name]="value">nihao</div>
+        </div>
+        <!-- *动态绑定对象 -->
+        <div class="bind">
+            <div v-bind="info">hah1</div>
+            <div :="info">hah1</div>
+        </div>
+
+        
+        <button @click="toggle">切换</button>
+    </template>
+    <script>
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+                    imgUrl: "",
+                    link: "https://foodf.foodsupet.com",
+                    show: false,
+                    title: 'bcd',
+                    color: "yellow",
+                    'font-wight': '10',
+                    classObj: { 'active': true, 'title': false },
+                    style1Obj: { color: 'pink' },
+                    style2Obj: { 'font-size': '50px' },
+
+                    name:"style",
+                    value: { color: 'red' },
+
+                    info: {
+                        name:"lcy",
+                        age: "18",
+                    }
+                }
+            },
+            methods: {
+                toggle() {
+                    this.show = !this.show
+                    console.log(this['font-wight']);
+                },
+                getClass() {
+                    return { 'active': true, 'title': false }
+                }
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>

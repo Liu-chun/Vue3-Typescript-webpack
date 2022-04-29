@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对象的引用，指向同一个内存地址
+        // var info = {
+        //     name: "张三",
+        //     age: 18
+        // }
+        // var obj = info
+        // obj.name = "lcy"
+        // console.log(info.name);
+
+        // 浅拷贝
+        // 只会对最外层的数据进行拷贝
+        // var info = {
+        //     name: "张三",
+        //     age: 18,
+        //     friend: {
+        //         name: "李四",
+        //         age: 19
+        //     }
+        // }
+
+        // var obj = Object.assign({}, info)
+
+        // obj.name = "lcy"
+        // console.log(info.name);
+
+        // obj.friend.name = "kobe"
+        // console.log(info.friend.name);
+
+        // 深拷贝
+        // 对对象中所有的数据进行拷贝
+        var info = {
+            name: "张三",
+            age: 18,
+            friend: {
+                name: "李四",
+                age: 19
+            }
+        }
+
+        var obj1 = JSON.stringify(info)
+        var obj = JSON.parse(obj1)
+
+        obj.name = "james"
+        console.log(info.friend.name);
+
+        obj.friend.name = "kobe"
+        console.log(info.friend.name);
+        
+    </script>
+</body>
+</html>

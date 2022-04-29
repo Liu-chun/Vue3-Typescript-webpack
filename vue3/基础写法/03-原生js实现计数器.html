@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="counter">
+        <h2 class="count">0</h2>
+        <button class="increase">+1</button>
+        <button class="decrease">-1</button>
+    </div>
+    <script>
+        const count = document.querySelector(".count")
+        const increase = document.querySelector(".increase")
+        const decrease = document.querySelector(".decrease")
+        
+        var counter = count.innerText
+ 
+        increase.onclick = function() {
+            counter = (1 * counter) + 1
+            count.innerText = counter
+        }
+        decrease.addEventListener("click",function() {
+            counter = (1 * counter) - 1
+            count.innerText = counter
+        })
+
+    </script>
+</body>
+</html>

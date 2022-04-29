@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <!-- lazy -->
+        <input type="text" v-model.lazy="mes">
+        <p>{{ mes }}</p>
+        <!-- number -->
+        <input type="text" v-model.number="mes">
+        <p>{{ num }}</p>
+        <!-- trim -->
+        <input type="text" v-model.trim="mes">
+        <p>{{ mes }}</p>
+        <button @click="showType">查看</button>
+    </template>
+    <script>
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+                    mes: "",
+                    num: 100
+                }
+            },
+            methods: {
+                showType() {
+                    console.log(this.mes, typeof this.mes)
+                    console.log(this.num, typeof this.num)
+                }
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

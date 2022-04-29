@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- v-if直接销毁元素可以与template一起使用 -->
+    <!-- v-show操作元素的display，不可以与template一起使用 -->
+    <div id="app"></div>
+    <template id="my-app">
+        <p v-if="show">你好</p>
+        <p v-show="show">hellow</p>
+    </template>
+    <script>
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+                    mes: "hellow world",
+                    show: false
+                }
+            }
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

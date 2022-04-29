@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <!-- mustche语法实现 -->
+        <h2>{{ firstName + " " + lastName }}</h2>
+        <h2>{{ score > 60 ? 'A' : 'B' }}</h2>
+        <h2>{{ mes.split(" ").reverse().join("")}}</h2>
+        <!-- 函数的方法 -->
+        <h2>{{ setName() }}</h2>
+        <h2>{{ setScore() }}</h2>
+        <h2>{{ setMes() }}</h2>
+        <!-- 计算属性实现 -->
+        <h2>{{ setFullName }}</h2>
+        <h2>{{ setA }}</h2>
+        <h2>{{ setMess }}</h2>
+    </template>
+    <script>
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+                    firstName: "liu",
+                    lastName: "cy",
+                    score: 10,
+                    mes: "hellow world"
+                }
+            },
+            methods: {
+                setName() {
+                    return this.firstName + " " + this.lastName
+                },
+                setScore() {
+                    return this.score > 60 ? 'A' : 'B'
+                },
+                setMes() {
+                    return this.mes.split(" ").reverse().join("")
+                }
+            },
+            computed: {
+                setFullName() {
+                    return this.firstName + " " + this.lastName
+                },
+                setA() {
+                    return this.score > 60 ? 'A' : 'B'
+                },
+                setMess() {
+                    return this.mes.split(" ").reverse().join("")
+                }
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>

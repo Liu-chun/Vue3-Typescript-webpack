@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .mouse{
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <button v-on:click="handleBtn1Click">按钮一</button>
+        <div class="mouse"  v-on:mousemove="handleBtn1move">按钮一</div>
+        <!-- 绑定多个事件 -->
+        <div class="mouse" v-on="{ click: handleBtn1Click, mousemove: handleBtn1move }">按钮二</div>
+        <!-- 参数传递 -->
+        <!-- 默认传入 event对象 -->
+        <div class="mouse" @click="handleBtn2Click"></div>
+        <!-- 多个参数需要手动传入 -->
+        <div class="mouse" @click="handleBtn3Click($event, 5)"></div>
+        <!-- 修饰符 -->
+        <!-- .stop 停止冒泡 -->
+        <div class="mouse" @click="handleBtn4Click">
+            <div @click.stop="handleBtn5Click">hha</div>
+        </div>
+    </template>
+    <script>
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+
+                }
+            },
+            methods: {
+                handleBtn1Click() {
+                    console.log(1);
+                },
+                handleBtn1move() {
+                    console.log(2);
+                },
+                handleBtn2Click(e) {
+                    e.target.style.width = '300px'
+                    console.log();
+                },
+                handleBtn3Click(e, i) {
+                    console.log(e);
+                    console.log(i);
+                },
+                handleBtn4Click() {
+                    console.log(5);
+                },
+                handleBtn5Click() {
+                    console.log(6);
+                }
+
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

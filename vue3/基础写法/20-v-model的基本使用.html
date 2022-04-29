@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <input type="text" v-model="value">
+        <p>{{ value }}</p>
+        <!-- 绑定表单 -->
+        <label for="agree">
+            <input id="agree" type="checkbox" v-model="isAgree"> 同意
+            <p>{{ isAgree }}</p>
+        </label>
+        <p>爱好：</p>
+        <label for="basketball">
+            <input id="basketball" type="checkbox" v-model="hobbies" value="basketball"> 篮球
+        </label>
+        <label for="ball">
+            <input id="ball" type="checkbox" v-model="hobbies" value="ball"> 球
+        </label>
+        <label for="football">
+            <input id="football" type="checkbox" v-model="hobbies" value="football"> 足球
+        </label>
+
+        <p>{{ hobbies }}</p>
+
+        <p>水果：</p>
+        <select v-model="fruit">
+            <option>苹果</option>
+            <option>橘子</option>
+            <option>香蕉</option>
+        </select>
+
+    </template>
+    <script>
+        const App = {
+            template: "#my-app",
+            data() {
+                return {
+                    value: "",
+                    isAgree: false,
+                    hobbies: [],
+                    fruit: "",
+                }
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>

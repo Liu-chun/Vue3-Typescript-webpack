@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="my-app">
+        <h2>{{ info.name }}</h2>
+        <button @click="changeInfo">改变1</button>
+        <button @click="changeInfoName">改变2</button>
+    </template>
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                return {
+                    info: { name: "lcy", age: 18 },
+                    a: 1,
+                    b: 2,
+                    c: {
+                        d: 4
+                    },
+                    e: 5,
+                    f: 6,
+                    friends: [ {name: "张三"}, {name: "李四"},]
+                }
+            },
+            watch: {
+                // "info": function(newInfo, oldInfo) {
+                //     console.log("新" + newInfo, "旧" + oldInfo);
+                // },
+                "info": {
+                    handler: function (newInfo, oldInfo) {
+                        console.log("新" + newInfo, "旧" + oldInfo.name);
+                    },
+                    deep: true,
+                    // immediate: true
+                },
+                a(newVal, oldVal) {
+                    console.log(newVal, oldVal);
+                },
+                b: "someMethod",
+                f: [
+                    "handle1",
+                    function handle2(val, oldVal) {
+                        console.log(Val, oldVal);
+                    },
+                    {
+                        handler: function handle3(val, oldVal) {
+                            console.log(Val, oldVal);
+
+                        }
+                    }
+                ],
+                // 监听数组中的数据改变
+                // 监听不到
+                "friedns[0].name": function(newVal, oldVal){
+                    console.log(newVal, oldVal);
+                }
+                // 如果想要监听数组中数据的改变最好将要遍历的数组放到组件中通过父子传值的方法在子组件中监听传递过了的值
+
+            
+            },
+            created() {
+                const unwatch = this.$watch("info", (newInfo, oldInfo) => {
+                    this.info.name = "curry"
+                },{
+                    deep: true,
+                    immediate: true
+                })
+            },
+            methods: {
+                changeInfo() {
+                    this.info = { name: "james" }
+                    this.a = 10
+                    this.b = 20
+                },
+                changeInfoName() {
+                    this.info.name = "kobe"
+                },
+                someMethod() {
+                    console.log('b changed')
+                },
+                handle1() {
+                    console.log('handle 1 triggered')
+                }
+            },
+        }
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+
+</html>
